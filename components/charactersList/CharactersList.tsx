@@ -26,8 +26,7 @@ export function CharactersList({
   const handleLoadMoreCharacters = () => {
     setLoading(true);
 
-    // loadMoreCharacters();
-    setTimeout(loadMoreCharacters, 1000);
+    loadMoreCharacters();
   };
 
   useEffect(() => {
