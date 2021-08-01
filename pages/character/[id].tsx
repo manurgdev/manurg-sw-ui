@@ -6,6 +6,7 @@ import { getCharacter } from '../../components/character/services/characters.ser
 import { ICharacterVM } from '../../components/character/Characters.vm';
 import Link from 'next/link';
 import { saveCharacterToStore } from '../../components/character/services/characters.local';
+import { useAppSelector } from '../../hooks/store';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
@@ -19,20 +20,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function Character({ characterProp }: { characterProp: ICharacterVM }) {
-  const [character, setCharacter] = useState(characterProp);
+  const [character] = useState(characterProp);
+
+  const isCharacterInStore: boolean = useAppSelector((state) =>
+    state.characters.value.some((characterInStore) => characterInStore.id === character.id)
+  );
 
   useEffect(() => {
-    saveCharacterToStore(character);
-  }, [character]);
+    if (!isCharacterInStore) saveCharacterToStore(character);
+  }, [character, isCharacterInStore]);
 
   return (
-    <Layout home>
+    <Layout childTitle={character.name}>
       <Head>
         <title>Star Wars Characters</title>
       </Head>
-      <Link href={'/'} passHref>
-        <button type="button">Volver a home</button>
-      </Link>
       {character.id !== 0 ? <div>{character.name}</div> : <div>Nope</div>}
     </Layout>
   );

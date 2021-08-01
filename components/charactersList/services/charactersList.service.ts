@@ -9,9 +9,7 @@ export async function getCharacters(page: number = 1) {
     if (charactersFromLocal.total) return charactersFromLocal;
 
     let charactersFromApi: ICharactersListVM = await getCharactersFromApi(page)
-        .then(characters => mapCharactersListFromServiceToVM(characters));
-
-    saveCharactersToStore(charactersFromApi, page);
+        .then(characters => mapCharactersListFromServiceToVM(characters, page));
 
     return charactersFromApi;
 }

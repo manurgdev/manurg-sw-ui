@@ -14,10 +14,10 @@ export function getCharactersFromStore(page: number): ICharactersListVM {
         : createEmptyCharactersList();
 }
 
-export function saveCharactersToStore(charactersList: ICharactersListVM, page: number): void {
+export function saveCharactersToStore(charactersList: ICharactersListVM): void {
     store.dispatch(addCharactersList(
         {
-            key: getCharacterLocalKey(page),
+            key: getCharacterLocalKey(charactersList.page),
             charactersList
         }
     ));

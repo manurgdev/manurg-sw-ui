@@ -1,10 +1,12 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ICharacterVM } from '../components/character/Characters.vm';
 import { CharactersList } from '../components/charactersList/CharactersList';
 import { ICharactersListVM } from '../components/charactersList/CharactersList.vm';
+import { saveCharactersToStore } from '../components/charactersList/services/charactersList.local';
 import { getCharacters } from '../components/charactersList/services/charactersList.service';
+import { useAppSelector } from '../hooks/store';
 import { Layout } from '../layout';
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -21,6 +23,16 @@ export default function Home({ charactersList }: { charactersList: ICharactersLi
   const [characters, setCharacters] = useState(charactersList.characters);
 
   const [currentCharactersList, setCurrentCharactersList] = useState(charactersList);
+
+  let isCharactersListInStore: boolean = useAppSelector((state) =>
+    state.charactersList.value.some(
+      (storedCharactersList) => storedCharactersList.charactersList.page === currentCharactersList.page
+    )
+  );
+
+  useEffect(() => {
+    if (!isCharactersListInStore) saveCharactersToStore(currentCharactersList);
+  }, [currentCharactersList, isCharactersListInStore]);
 
   const loadMoreCharacters = async () => {
     if (currentCharactersList.next === 'null' || !currentCharactersList.next.includes('page=')) return;

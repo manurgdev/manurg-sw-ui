@@ -13,6 +13,7 @@ export interface Theme extends DefaultTheme {
   cardBackground: string;
   cardBackgroundHover: string;
   cardBoxShadowHover: string;
+  progressBarColor: string;
 }
 
 export const lightTheme = {
@@ -27,7 +28,8 @@ export const lightTheme = {
   anchorHoverColor: '#73d941',
   cardBackground: '#dae1e3',
   cardBackgroundHover: '#c7cfd1',
-  cardBoxShadowHover: '0px 0px 25px 9px rgba(25,165,230,1)'
+  cardBoxShadowHover: '0px 0px 25px 9px rgba(25,165,230,1)',
+  progressBarColor: '#19a5e6'
 }
 
 export const darkTheme = {
@@ -42,7 +44,8 @@ export const darkTheme = {
   anchorHoverColor: '#9e51b8',
   cardBackground: '#999',
   cardBackgroundHover: '#828282',
-  cardBoxShadowHover: '0px 0px 25px 9px rgba(230,25,25,1)'
+  cardBoxShadowHover: '0px 0px 25px 9px rgba(230,25,25,1)',
+  progressBarColor: '#e61919'
 }
 
 
@@ -74,5 +77,9 @@ export const GlobalStyles = createGlobalStyle`
   a:hover {
     color: ${({ theme }) => (theme as Theme).anchorHoverColor};
     transition: all 0.15s linear;
+  }
+
+  #nprogress .bar {
+    background: ${({ theme }) => (theme as Theme).progressBarColor}
   }
 `;

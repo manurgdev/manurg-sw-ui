@@ -32,14 +32,14 @@ export default function Layout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Star Wars Characters" />
       </Head>
-      {!home && (
-        <div>
-          <Link href="/">
-            <a>Back to home</a>
-          </Link>
-        </div>
-      )}
       <header>
+        {!home && (
+          <div>
+            <Link href="/">
+              <a>Back to home</a>
+            </Link>
+          </div>
+        )}
         <SiteTitle>{home ? siteTitle : childTitle || siteTitle}</SiteTitle>
       </header>
       <Main>{children}</Main>

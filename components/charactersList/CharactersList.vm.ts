@@ -1,6 +1,7 @@
 import { ICharacterVM } from "../character/Characters.vm";
 
 export interface ICharactersListVM {
+    page: number;
     total: number;
     next: string;
     previous: string;
@@ -8,6 +9,7 @@ export interface ICharactersListVM {
 }
 
 export const createEmptyCharactersList = (): ICharactersListVM => ({
+    page: 0,
     total: 0,
     next: '',
     previous: '',

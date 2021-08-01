@@ -6,8 +6,9 @@ import {
 } from "./CharactersList.vm";
 import { mapCharactersFromServiceToVM } from "../character/Characters.mapper";
 
-export const mapCharactersListFromServiceToVM = ({ count, next, previous, results }: ICharactersListSM): ICharactersListVM => {
+export const mapCharactersListFromServiceToVM = ({ count, next, previous, results }: ICharactersListSM, page: number): ICharactersListVM => {
     return {
+        page: page,
         total: count,
         next,
         previous,
