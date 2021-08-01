@@ -1,21 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { BackToHomeWrapper, IconBack, Main, SiteTitle, SiteTitleHome } from './layout.styles';
 
 const siteTitle = 'Star Wars Characters';
-
-const Main = styled.main`
-  padding: 2rem 3rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-const SiteTitle = styled.h1`
-  margin: 3rem;
-  margin-bottom: 0;
-  line-height: 1.15;
-  font-size: 2rem;
-`;
 
 export default function Layout({
   children,
@@ -34,13 +21,13 @@ export default function Layout({
       </Head>
       <header>
         {!home && (
-          <div>
-            <Link href="/">
-              <a>Back to home</a>
+          <BackToHomeWrapper>
+            <Link href="/" passHref>
+              <IconBack>Back to home</IconBack>
             </Link>
-          </div>
+          </BackToHomeWrapper>
         )}
-        <SiteTitle>{home ? siteTitle : childTitle || siteTitle}</SiteTitle>
+        {home ? <SiteTitleHome>{siteTitle}</SiteTitleHome> : <SiteTitle>{childTitle || siteTitle}</SiteTitle>}
       </header>
       <Main>{children}</Main>
     </div>

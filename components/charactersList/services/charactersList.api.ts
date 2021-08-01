@@ -11,5 +11,8 @@ export function getCharactersFromApi(page: number): Promise<ICharactersListSM> {
             return characters.count
                 ? characters
                 : createEmptyCharactersList()
+        })
+        .catch((e: Error) => {
+            return createEmptyCharactersList();
         });
 }

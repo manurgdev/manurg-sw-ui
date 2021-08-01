@@ -1,6 +1,5 @@
 import { CHARACTERS_API_PATH } from "../../../core/constants";
 import { getData } from "../../../core/xhr";
-import { createEmptyCharacter } from "../Characters.vm";
 import { ICharacterSM } from "./characters-service-model";
 
 export function getCharacterFromApi(id: number): Promise<ICharacterSM | null> {
@@ -12,5 +11,8 @@ export function getCharacterFromApi(id: number): Promise<ICharacterSM | null> {
             return character.hasOwnProperty('name')
                 ? character
                 : null
+        })
+        .catch((e: Error) => {
+            return null;
         });
 }

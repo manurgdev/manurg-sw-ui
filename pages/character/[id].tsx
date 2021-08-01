@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { Layout } from '../../layout';
 import { getCharacter } from '../../components/character/services/characters.service';
 import { ICharacterVM } from '../../components/character/Characters.vm';
-import Link from 'next/link';
 import { saveCharacterToStore } from '../../components/character/services/characters.local';
 import { useAppSelector } from '../../hooks/store';
+import Custom404 from '../404';
+import { Characters } from '../../components/character/Characters';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
@@ -30,12 +31,16 @@ export default function Character({ characterProp }: { characterProp: ICharacter
     if (!isCharacterInStore) saveCharacterToStore(character);
   }, [character, isCharacterInStore]);
 
+  if (!character.id) {
+    return <Custom404 />;
+  }
+
   return (
     <Layout childTitle={character.name}>
       <Head>
-        <title>Star Wars Characters</title>
+        <title>{character.name} - Star Wars Characters</title>
       </Head>
-      {character.id !== 0 ? <div>{character.name}</div> : <div>Nope</div>}
+      <Characters character={character} />
     </Layout>
   );
 }

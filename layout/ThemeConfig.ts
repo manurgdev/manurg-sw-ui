@@ -14,6 +14,7 @@ export interface Theme extends DefaultTheme {
   cardBackgroundHover: string;
   cardBoxShadowHover: string;
   progressBarColor: string;
+  filmsCounterColor: string;
 }
 
 export const lightTheme = {
@@ -29,7 +30,8 @@ export const lightTheme = {
   cardBackground: '#dae1e3',
   cardBackgroundHover: '#c7cfd1',
   cardBoxShadowHover: '0px 0px 25px 9px rgba(25,165,230,1)',
-  progressBarColor: '#19a5e6'
+  progressBarColor: '#19a5e6',
+  filmsCounterColor: '#d2192f'
 }
 
 export const darkTheme = {
@@ -45,7 +47,8 @@ export const darkTheme = {
   cardBackground: '#999',
   cardBackgroundHover: '#828282',
   cardBoxShadowHover: '0px 0px 25px 9px rgba(230,25,25,1)',
-  progressBarColor: '#e61919'
+  progressBarColor: '#e61919',
+  filmsCounterColor: '#19a5e6'
 }
 
 

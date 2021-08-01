@@ -8,6 +8,7 @@ import { saveCharactersToStore } from '../components/charactersList/services/cha
 import { getCharacters } from '../components/charactersList/services/charactersList.service';
 import { useAppSelector } from '../hooks/store';
 import { Layout } from '../layout';
+import Custom404 from './404';
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const charactersList: ICharactersListVM = await getCharacters();
@@ -51,6 +52,10 @@ export default function Home({ charactersList }: { charactersList: ICharactersLi
 
     setCurrentCharactersList(charactersList);
   };
+
+  if (!currentCharactersList.total) {
+    return <Custom404 />;
+  }
   return (
     <Layout home>
       <Head>

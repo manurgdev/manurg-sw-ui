@@ -1,4 +1,3 @@
-// TODO: Conver to store
 import { CHARACTERS_LIST_KEY } from "../../../core/constants";
 import { store } from '../../../store';
 import { createEmptyCharactersList, ICharactersListVM } from "../CharactersList.vm";

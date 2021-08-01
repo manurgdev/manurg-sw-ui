@@ -1,7 +1,7 @@
 import { mapCharactersListFromServiceToVM } from "../CharactersList.mapper";
 import { ICharactersListVM } from "../CharactersList.vm";
 import { getCharactersFromApi } from "./charactersList.api";
-import { getCharactersFromStore, saveCharactersToStore } from "./charactersList.local";
+import { getCharactersFromStore } from "./charactersList.local";
 
 export async function getCharacters(page: number = 1) {
     let charactersFromLocal: ICharactersListVM = getCharactersFromStore(page);

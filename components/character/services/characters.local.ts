@@ -1,4 +1,3 @@
-// TODO: Conver to store
 import { store } from '../../../store';
 import { createEmptyCharacter, ICharacterVM } from "../Characters.vm";
 import { addCharacter } from "../charactersSlice";
