@@ -1,11 +1,4 @@
-export interface SMCharactersList {
-    count: number;
-    next: string;
-    previous: string;
-    results: SMCharacter[];
-}
-
-export interface SMCharacter {
+export interface ICharacterSM {
     name: string;
     height: string;
     mass: string;
@@ -23,10 +16,3 @@ export interface SMCharacter {
     edited: string;
     url: string;
 }
-
-export const createEmptyCharactersList = (): SMCharactersList => ({
-    count: 0,
-    next: '',
-    previous: '',
-    results: []
-})

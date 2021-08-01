@@ -1,20 +1,15 @@
-export interface VMCharactersList {
+import { ICharacterVM } from "../character/Characters.vm";
+
+export interface ICharactersListVM {
     total: number;
     next: string;
     previous: string;
-    characters: VMCharacter[];
+    characters: ICharacterVM[];
 }
 
-export interface VMCharacter {
-    name: string;
-    height: string;
-    gender: string;
-    mass: string;
-    hairColor: string;
-    eyeColor: string;
-    skinColor: string;
-    birthYear: string;
-    films: string[];
-    url: string;
-    id: number | null;
-}
+export const createEmptyCharactersList = (): ICharactersListVM => ({
+    total: 0,
+    next: '',
+    previous: '',
+    characters: []
+});

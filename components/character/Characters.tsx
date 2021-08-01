@@ -1,3 +1,4 @@
+import { ICharacterVM } from './Characters.vm';
 import {
   Card,
   CharacterCardInfo,
@@ -7,10 +8,9 @@ import {
   Grid,
   Loader,
   LoadMoreCharacters,
-} from './CharactersList.styles';
+} from './Characters.styles';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { ICharacterVM } from '../character/Characters.vm';
 
 export function CharactersList({
   characters,

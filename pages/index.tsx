@@ -1,16 +1,14 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
+import { ICharacterVM } from '../components/character/Characters.vm';
 import { CharactersList } from '../components/charactersList/CharactersList';
-import { mapCharactersListFromServiceToVM } from '../components/charactersList/CharactersList.mapper';
-import { VMCharacter, VMCharactersList } from '../components/charactersList/CharactersList.vm';
-import { getCharacters } from '../components/charactersList/services/characters.service';
-import Layout from '../layout/layout';
+import { ICharactersListVM } from '../components/charactersList/CharactersList.vm';
+import { getCharacters } from '../components/charactersList/services/charactersList.service';
+import { Layout } from '../layout';
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const charactersList: VMCharactersList = await getCharacters().then((characters) =>
-    mapCharactersListFromServiceToVM(characters)
-  );
+  const charactersList: ICharactersListVM = await getCharacters();
 
   return {
     props: {
@@ -19,7 +17,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default function Home({ charactersList }: { charactersList: VMCharactersList }) {
+export default function Home({ charactersList }: { charactersList: ICharactersListVM }) {
   const [characters, setCharacters] = useState(charactersList.characters);
 
   const [currentCharactersList, setCurrentCharactersList] = useState(charactersList);
@@ -34,11 +32,8 @@ export default function Home({ charactersList }: { charactersList: VMCharactersL
         ?.split('=')
         ?.reverse()[0] || '0';
 
-    const charactersList: VMCharactersList = await getCharacters(parseInt(nextPage)).then((characters) =>
-      mapCharactersListFromServiceToVM(characters)
-    );
-
-    setCharacters((prevCharacters: VMCharacter[]) => {
+    const charactersList: ICharactersListVM = await getCharacters(parseInt(nextPage));
+    setCharacters((prevCharacters: ICharacterVM[]) => {
       return [...prevCharacters, ...charactersList.characters];
     });
 
