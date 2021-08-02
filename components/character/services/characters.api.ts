@@ -12,7 +12,7 @@ export function getCharacterFromApi(id: number): Promise<ICharacterSM | null> {
                 ? character
                 : null
         })
-        .catch((e: Error) => {
+        .catch(() => {
             return null;
         });
 }

@@ -11,7 +11,7 @@ export function Films({ filmsUrl }: { filmsUrl: string[] }) {
 
   useEffect(() => {
     filmsUrl.forEach(async (filmUrl) => {
-      let film: IFilmsVM = await getFilm(filmUrl);
+      const film: IFilmsVM = await getFilm(filmUrl);
 
       setFilms((prevFilms: IFilmsVM[]) => {
         return !prevFilms.some((prevFilm: IFilmsVM) => prevFilm.episodeId === film.episodeId)

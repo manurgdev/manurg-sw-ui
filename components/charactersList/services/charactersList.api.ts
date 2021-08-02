@@ -12,7 +12,7 @@ export function getCharactersFromApi(page: number): Promise<ICharactersListSM> {
                 ? characters
                 : createEmptyCharactersList()
         })
-        .catch((e: Error) => {
+        .catch(() => {
             return createEmptyCharactersList();
         });
 }

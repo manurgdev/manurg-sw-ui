@@ -8,7 +8,7 @@ export function getFilmFromApi(url: string): Promise<IFilmsSM | null> {
                 ? film
                 : null
         })
-        .catch((e: Error) => {
+        .catch(() => {
             return null;
         });
 }
