@@ -21,26 +21,28 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function Character({ characterProp }: { characterProp: ICharacterVM }) {
-  const [character] = useState(characterProp);
+  if (!characterProp) {
+    return <div>Loading</div>;
+  }
 
-  const isCharacterInStore: boolean = useAppSelector((state) =>
-    state.characters.value.some((characterInStore) => characterInStore.id === character.id)
-  );
+  // const isCharacterInStore: boolean = useAppSelector((state) =>
+  //   state.characters.value.some((characterInStore) => characterInStore.id === characterProp.id)
+  // );
 
-  useEffect(() => {
-    if (!isCharacterInStore) saveCharacterToStore(character);
-  }, [character, isCharacterInStore]);
+  // useEffect(() => {
+  //   if (!isCharacterInStore) saveCharacterToStore(characterProp);
+  // }, [characterProp, isCharacterInStore]);
 
-  if (!character.id) {
+  if (!characterProp.id) {
     return <Custom404 />;
   }
 
   return (
-    <Layout childTitle={character.name}>
+    <Layout childTitle={characterProp.name}>
       <Head>
-        <title>{character.name} - Star Wars Characters</title>
+        <title>{characterProp.name} - Star Wars Characters</title>
       </Head>
-      <Characters character={character} />
+      <Characters character={characterProp} />
     </Layout>
   );
 }

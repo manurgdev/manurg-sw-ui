@@ -1,4 +1,4 @@
-import { render } from '../../test-utils/render';
+import { render } from '@testing-library/react';
 import { Films } from '../../components/films/Films';
 import { mockedFilmsUrl } from '../../__mocks__/mocks';
 
